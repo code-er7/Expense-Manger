@@ -1,9 +1,11 @@
 import express from 'express';
+import { authUser, registerUser } from '../Controller/UserDataController.js';
 const router = express.Router();
 
 
 
-router.post('/register' , registerController);
-router.post('/login' , loginController);
+// JSON.stringify(obj) this returns a json data format , converts JS obj into json 
+router.post('/register' , registerUser);
+router.post('/login' , authUser);
 
 export default router ;

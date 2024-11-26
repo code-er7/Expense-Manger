@@ -1,13 +1,18 @@
 import express from "express";
 import cors from "cors";
-// import userRoutes from './Routes/UserRoutes.js'
-
+import connectDb from "./Config/mongoDb.js";
+import dotenv from 'dotenv'
+import { errorHandler, notFound } from "./Middlewares/errorHandling.js";
+import userRoutes from './Routes/UserRoutes.js'
+dotenv.config({ path: "./Config/.env" });
 const app = express();
-const PORT = 8000;
+const PORT = process.env.PORT;
+
 
 //middlewares
 app.use(express.json());
 app.use(cors());
+connectDb();
 
 //understood the use of next keyword
 // app.use((req , res , next)=>{
@@ -20,10 +25,10 @@ app.use(cors());
 app.get("/", (req, res) => {
   res.send("hello world");
 });
-// app.use('/app/v1.1/user' , userRoutes);
+app.use('/app/v1.1/user' , userRoutes);
 
-
-
+app.use(notFound);
+app.use(errorHandler);
 
 //error handling middleware
 //if i made a middleware and send the error in it's next function than it will skip all the middlewares in b/w and directly send the req to
