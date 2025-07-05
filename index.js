@@ -25,6 +25,8 @@ connectDb();
 app.get("/", (req, res) => {
   res.send("hello world");
 });
+
+
 app.use('/app/v1.1/user' , userRoutes);
 
 app.use(notFound);
