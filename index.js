@@ -12,7 +12,7 @@ const PORT = process.env.PORT;
 //middlewares
 app.use(express.json());
 app.use(cors());
-connectDb();
+// connectDb();
 
 //understood the use of next keyword
 // app.use((req , res , next)=>{
