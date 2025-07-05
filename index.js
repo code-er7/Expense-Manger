@@ -1,10 +1,14 @@
 import express from "express";
 import cors from "cors";
+import dotenv from "dotenv";
 import connectDb from "./Config/mongoDb.js";
-import dotenv from 'dotenv'
 import { errorHandler, notFound } from "./Middlewares/errorHandling.js";
 import userRoutes from './Routes/UserRoutes.js'
+
+
 dotenv.config({ path: "./Config/.env" });
+
+
 const app = express();
 const PORT = process.env.PORT;
 
@@ -12,7 +16,7 @@ const PORT = process.env.PORT;
 //middlewares
 app.use(express.json());
 app.use(cors());
-// connectDb();
+connectDb();
 
 //understood the use of next keyword
 // app.use((req , res , next)=>{
